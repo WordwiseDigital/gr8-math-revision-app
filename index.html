@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 8 Mathematics - Cambridge International</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .content-area {
+            min-height: 500px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .topic-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .topic-card:hover::before {
+            opacity: 1;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-left-color: #e74c3c;
+        }
+
+        .topic-card h3 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .topic-card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .topic-card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lesson-content {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .lesson-content h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .lesson-content h4 {
+            color: #34495e;
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #e8f5e8, #d4edda);
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        .practice-button {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .practice-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .back-button {
+            background: linear-gradient(45deg, #6c757d, #495057);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .topic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-btn {
+                width: 200px;
+            }
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+        }
+
+        .option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .option.correct {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .option.incorrect {
+            background: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Grade 8 Mathematics</h1>
+            <p>Cambridge International Curriculum</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <div class="navigation" id="navigation">
+            <button class="nav-btn active" onclick="showOverview()">📖 Overview</button>
+            <button class="nav-btn" onclick="showTopics()">📝 Topics</button>
+            <button class="nav-btn" onclick="showProgress()">📊 Progress</button>
+        </div>
+
+        <div class="content-area" id="contentArea">
+            <!-- Content will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <script>
+        const topics = [
+            {
+                id: 'whole-numbers',
+                title: 'Whole Numbers',
+                icon: '🔢',
+                description: 'Learn about natural numbers, place value, and basic operations with whole numbers.',
+                content: {
+                    theory: 'Whole numbers are the set of numbers {0, 1, 2, 3, 4, ...} that include all natural numbers and zero.',
+                    examples: ['145 + 267 = 412', '1000 - 458 = 542'],
+                    formula: 'Set of Whole Numbers: W = {0, 1, 2, 3, 4, 5, ...}'
+                }
+            },
+            {
+                id: 'integers',
+                title: 'Integers',
+                icon: '➕➖',
+                description: 'Understand positive and negative numbers, and operations with integers.',
+                content: {
+                    theory: 'Integers include all whole numbers and their negative counterparts: {..., -3, -2, -1, 0, 1, 2, 3, ...}',
+                    examples: ['-5 + 8 = 3', '-12 - (-7) = -5', '(-3) × 4 = -12'],
+                    formula: 'Set of Integers: Z = {..., -3, -2, -1, 0, 1, 2, 3, ...}'
+                }
+            },
+            {
+                id: 'exponents',
+                title: 'Exponents',
+                icon: '📈',
+                description: 'Master powers, indices, and exponential notation.',
+                content: {
+                    theory: 'An exponent tells us how many times to multiply a base number by itself.',
+                    examples: ['2³ = 2 × 2 × 2 = 8', '5² = 5 × 5 = 25', '10⁴ = 10,000'],
+                    formula: 'aⁿ = a × a × a × ... (n times)'
+                }
+            },
+            {
+                id: 'patterns',
+                title: 'Numeric and Geometric Patterns',
+                icon: '🔄',
+                description: 'Identify and create patterns in numbers and shapes.',
+                content: {
+                    theory: 'Patterns are sequences that follow a specific rule or relationship.',
+                    examples: ['Arithmetic: 2, 5, 8, 11, 14... (+3)', 'Geometric: 2, 6, 18, 54... (×3)'],
+                    formula: 'nth term = first term + (n-1) × common difference'
+                }
+            },
+            {
+                id: 'algebra',
+                title: 'Algebraic Expressions and Equations',
+                icon: '📊',
+                description: 'Work with variables, expressions, and solve linear equations.',
+                content: {
+                    theory: 'Algebra uses letters to represent unknown numbers and helps solve problems.',
+                    examples: ['3x + 5 = 14, so x = 3', '2(a + 4) = 2a + 8'],
+                    formula: 'ax + b = c → x = (c - b)/a'
+                }
+            },
+            {
+                id: 'decimals',
+                title: 'Decimal Fractions',
+                icon: '🔢',
+                description: 'Understand decimal notation and operations with decimal numbers.',
+                content: {
+                    theory: 'Decimals represent parts of a whole using place value based on powers of 10.',
+                    examples: ['0.25 = 25/100 = 1/4', '3.75 + 2.48 = 6.23'],
+                    formula: 'Place values: tenths (0.1), hundredths (0.01), thousandths (0.001)'
+                }
+            },
+            {
+                id: 'fractions',
+                title: 'Common Fractions',
+                icon: '🍕',
+                description: 'Learn fraction operations, equivalence, and conversions.',
+                content: {
+                    theory: 'Fractions represent parts of a whole, written as numerator/denominator.',
+                    examples: ['1/2 + 1/4 = 2/4 + 1/4 = 3/4', '3/4 × 2/3 = 6/12 = 1/2'],
+                    formula: 'a/b × c/d = (a×c)/(b×d)'
+                }
+            },
+            {
+                id: '2d-geometry',
+                title: 'Geometry of 2D Shapes',
+                icon: '🔺',
+                description: 'Explore properties of triangles, quadrilaterals, and polygons.',
+                content: {
+                    theory: '2D shapes have length and width but no depth. They include triangles, squares, circles, etc.',
+                    examples: ['Triangle angles sum to 180°', 'Square has 4 equal sides and 4 right angles'],
+                    formula: 'Sum of interior angles = (n-2) × 180° where n = number of sides'
+                }
+            },
+            {
+                id: 'straight-lines',
+                title: 'Geometry of Straight Lines',
+                icon: '📏',
+                description: 'Study parallel lines, angles, and line relationships.',
+                content: {
+                    theory: 'Straight lines extend infinitely in both directions and form various angles when intersecting.',
+                    examples: ['Parallel lines never meet', 'Vertically opposite angles are equal'],
+                    formula: 'Angles on a straight line = 180°'
+                }
+            },
+            {
+                id: 'pythagoras',
+                title: 'The Theorem of Pythagoras',
+                icon: '📐',
+                description: 'Apply the Pythagorean theorem to right-angled triangles.',
+                content: {
+                    theory: 'In a right triangle, the square of the hypotenuse equals the sum of squares of the other two sides.',
+                    examples: ['3² + 4² = 5² → 9 + 16 = 25', 'If a=5, b=12, then c=13'],
+                    formula: 'a² + b² = c²'
+                }
+            },
+            {
+                id: 'solve-triangles',
+                title: 'Solve Triangles Using Pythagoras',
+                icon: '🔍',
+                description: 'Find missing sides and apply Pythagorean theorem in problem solving.',
+                content: {
+                    theory: 'Use Pythagoras theorem to find unknown sides in right triangles.',
+                    examples: ['Find hypotenuse: c = √(a² + b²)', 'Find leg: a = √(c² - b²)'],
+                    formula: 'c = √(a² + b²) or a = √(c² - b²)'
+                }
+            },
+            {
+                id: 'perimeter-area',
+                title: 'Perimeter and Area of 2D Shapes',
+                icon: '📏📐',
+                description: 'Calculate perimeter and area of various 2D shapes.',
+                content: {
+                    theory: 'Perimeter is the distance around a shape. Area is the space inside a shape.',
+                    examples: ['Rectangle: P = 2(l+w), A = l×w', 'Circle: P = 2πr, A = πr²'],
+                    formula: 'Rectangle Area = length × width'
+                }
+            },
+            {
+                id: 'circles',
+                title: 'Circles',
+                icon: '⭕',
+                description: 'Understand circle properties, circumference, and area.',
+                content: {
+                    theory: 'A circle is a set of points equidistant from a center point.',
+                    examples: ['r = 5, C = 2π(5) = 10π', 'A = π(5)² = 25π'],
+                    formula: 'Circumference = 2πr, Area = πr²'
+                }
+            },
+            {
+                id: 'rectangular-prisms',
+                title: 'Volume and Surface Area of Rectangular Prisms',
+                icon: '📦',
+                description: 'Calculate volume and surface area of 3D rectangular shapes.',
+                content: {
+                    theory: 'A rectangular prism has 6 rectangular faces, 12 edges, and 8 vertices.',
+                    examples: ['l=4, w=3, h=2: V=24, SA=52', 'Cube: V=s³, SA=6s²'],
+                    formula: 'Volume = l×w×h, Surface Area = 2(lw + lh + wh)'
+                }
+            },
+            {
+                id: 'triangular-prisms',
+                title: 'Volume and Surface Area of Triangular Prisms',
+                icon: '🔺📦',
+                description: 'Work with triangular-based 3D shapes.',
+                content: {
+                    theory: 'A triangular prism has 2 triangular faces and 3 rectangular faces.',
+                    examples: ['Base area = 6, height = 4: Volume = 24'],
+                    formula: 'Volume = Base Area × Height'
+                }
+            },
+            {
+                id: 'data-handling',
+                title: 'Data Handling',
+                icon: '📊',
+                description: 'Collect, organize, and interpret data using graphs and statistics.',
+                content: {
+                    theory: 'Data handling involves collecting, organizing, presenting, and analyzing data.',
+                    examples: ['Mean = sum/count', 'Mode = most frequent value'],
+                    formula: 'Mean = (sum of all values) ÷ (number of values)'
+                }
+            },
+            {
+                id: 'functions',
+                title: 'Functions and Relationships',
+                icon: '🔗',
+                description: 'Understand mathematical relationships and function notation.',
+                content: {
+                    theory: 'A function is a relationship where each input has exactly one output.',
+                    examples: ['f(x) = 2x + 1', 'If x = 3, then f(3) = 7'],
+                    formula: 'f(x) = output for input x'
+                }
+            },
+            {
+                id: 'transformation',
+                title: 'Transformation Geometry',
+                icon: '🔄',
+                description: 'Learn about reflection, rotation, translation, and enlargement.',
+                content: {
+                    theory: 'Transformations change the position, size, or orientation of shapes.',
+                    examples: ['Translation: slide', 'Rotation: turn', 'Reflection: flip'],
+                    formula: 'Transformations preserve shape properties'
+                }
+            },
+            {
+                id: '3d-geometry',
+                title: 'Geometry of 3D Objects',
+                icon: '🎲',
+                description: 'Explore properties of cubes, spheres, cylinders, and other 3D shapes.',
+                content: {
+                    theory: '3D objects have length, width, and height with faces, edges, and vertices.',
+                    examples: ['Cube: 6 faces, 12 edges, 8 vertices', 'Sphere: 1 curved surface'],
+                    formula: 'Euler formula: F + V - E = 2'
+                }
+            },
+            {
+                id: 'probability',
+                title: 'Probability',
+                icon: '🎲',
+                description: 'Calculate likelihood of events and understand chance.',
+                content: {
+                    theory: 'Probability measures how likely an event is to occur, from 0 to 1.',
+                    examples: ['Coin flip: P(heads) = 1/2', 'Die roll: P(6) = 1/6'],
+                    formula: 'Probability = favorable outcomes / total outcomes'
+                }
+            },
+            {
+                id: 'construction',
+                title: 'Construction of Geometric Figures',
+                icon: '📐✏️',
+                description: 'Use compass and straightedge to construct geometric shapes.',
+                content: {
+                    theory: 'Geometric construction uses only compass and straightedge to create precise figures.',
+                    examples: ['Construct perpendicular bisector', 'Construct angle bisector'],
+                    formula: 'Constructions must be exact, not measured'
+                }
+            }
+        ];
+
+        let currentView = 'overview';
+        let completedTopics = JSON.parse(localStorage.getItem('completedTopics') || '[]');
+        let currentTopic = null;
+
+        function updateProgress() {
+            const progress = (completedTopics.length / topics.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function showOverview() {
+            currentView = 'overview';
+            updateNavigation();
+            const content = `
+                <div style="text-align: center; padding: 40px;">
+                    <h2 style="color: #2c3e50; margin-bottom: 30px; font-size: 2.2rem;">Welcome to Grade 8 Mathematics! 🎓</h2>
+                    <div style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 30px; border-radius: 15px; margin: 20px 0;">
+                        <h3 style="color: #34495e; margin-bottom: 20px;">📚 Course Overview</h3>
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: #555; max-width: 800px; margin: 0 auto;">
+                            This comprehensive mathematics course covers all essential topics for Grade 8 students following the Cambridge International curriculum. 
+                            From fundamental number concepts to advanced geometric constructions, you'll build a solid foundation in mathematical thinking.
+                        </p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
+                        <div style="background: linear-gradient(135deg, #e8f5e8, #d4edda); padding: 20px; border-radius: 15px;">
+                            <h4 style="color: #155724; margin-bottom: 10px;">📊 ${topics.length} Topics</h4>
+                            <p style="color: #155724;">Comprehensive coverage of all key mathematical concepts</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #cce5ff, #b3d9ff); padding: 20px; border-radius: 15px;">
+                            <h4 style="color: #004085; margin-bottom: 10px;">🎯 Interactive Learning</h4>
+                            <p style="color: #004085;">Engaging examples and practice problems</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #fff3cd, #ffeaa7); padding: 20px; border-radius: 15px;">
+                            <h4 style="color: #856404; margin-bottom: 10px;">📈 Track Progress</h4>
+                            <p style="color: #856404;">Monitor your learning journey and achievements</p>
+                        </div>
+                    </div>
+                    <button class="practice-button" onclick="showTopics()" style="font-size: 1.2rem; padding: 15px 30px;">
+                        🚀 Start Learning
+                    </button>
+                </div>
+            `;
+            document.getElementById('contentArea').innerHTML = content;
+        }
+
+        function showTopics() {
+            currentView = 'topics';
+            updateNavigation();
+            let content = `
+                <h2 style="color: #2c3e50; margin-bottom: 20px; text-align: center;">📚 Mathematics Topics</h2>
+                <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px;">Click on any topic to start learning!</p>
+                <div class="topic-grid">
+            `;
+            
+            topics.forEach(topic => {
+                const isCompleted = completedTopics.includes(topic.id);
+                const completedIcon = isCompleted ? '✅' : '';
+                content += `
+                    <div class="topic-card" onclick="showTopic('${topic.id}')">
+                        <span class="icon">${topic.icon} ${completedIcon}</span>
+                        <h3>${topic.title}</h3>
+                        <p>${topic.description}</p>
+                    </div>
+                `;
+            });
+            
+            content += '</div>';
+            document.getElementById('contentArea').innerHTML = content;
+        }
+
+        function showTopic(topicId) {
+            currentTopic = topics.find(t => t.id === topicId);
+            if (!currentTopic) return;
+
+            const content = `
+                <button class="back-button" onclick="showTopics()">← Back to Topics</button>
+                <div class="lesson-content">
+                    <h3>${currentTopic.icon} ${currentTopic.title}</h3>
+                    <p style="margin-bottom: 20px; font-size: 1.1rem;">${currentTopic.description}</p>
+                    
+                    <h4>📖 Theory</h4>
+                    <p style="margin-bottom: 20px; line-height: 1.6;">${currentTopic.content.theory}</p>
+                    
+                    <div class="formula-box">
+                        <strong>Key Formula: </strong>${currentTopic.content.formula}
+                    </div>
+                    
+                    <h4>💡 Examples</h4>
+                    <div class="example-box">
+                        ${currentTopic.content.examples.map(example => `<p>• ${example}</p>`).join('')}
+                    </div>
+                    
+                    <button class="practice-button" onclick="startQuiz('${topicId}')">
+                        🎯 Practice Quiz
+                    </button>
+                    <button class="practice-button" onclick="completeTopic('${topicId}')" style="margin-left: 10px; background: linear-gradient(45deg, #28a745, #20c997);">
+                        ✅ Mark as Complete
+                    </button>
+                </div>
+            `;
+            document.getElementById('contentArea').innerHTML = content;
+        }
+
+        function completeTopic(topicId) {
+            if (!completedTopics.includes(topicId)) {
+                completedTopics.push(topicId);
+                localStorage.setItem('completedTopics', JSON.stringify(completedTopics));
+                updateProgress();
+                alert('🎉 Congratulations! Topic completed successfully!');
+                showTopic(topicId); // Refresh the view
+            }
+        }
+
+        function startQuiz(topicId) {
+            const quizQuestions = generateQuizQuestions(topicId);
+            let currentQuestion = 0;
+            let score = 0;
+
+            function showQuestion() {
+                if (currentQuestion >= quizQuestions.length) {
+                    showQuizResults();
+                    return;
+                }
+
+                const question = quizQuestions[currentQuestion];
+                const content = `
+                    <button class="back-button" onclick="showTopic('${topicId}')">← Back to Lesson</button>
+                    <div class="quiz-container">
+                        <h3>🎯 Practice Quiz - Question ${currentQuestion + 1} of ${quizQuestions.length}</h3>
+                        <div class="question">${question.question}</div>
+                        <div class="options" id="options">
+                            ${question.options.map((option, index) => 
+                                `<div class="option" onclick="selectOption(${index})" data-index="${index}">${option}</div>`
+                            ).join('')}
+                        </div>
+                        <button class="practice-button" onclick="submitAnswer()" id="submitBtn" style="display: none;">Submit Answer</button>
+                        <button class="practice-button" onclick="nextQuestion()" id="nextBtn" style="display: none;">Next Question</button>
+                    </div>
+                `;
+                document.getElementById('contentArea').innerHTML = content;
+            }
+
+            window.selectOption = function(index) {
+                document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+                document.querySelector(`[data-index="${index}"]`).classList.add('selected');
+                document.getElementById('submitBtn').style.display = 'inline-block';
+                window.selectedOption = index;
+            };
+
+            window.submitAnswer = function() {
+                const question = quizQuestions[currentQuestion];
+                const options = document.querySelectorAll('.option');
+                
+                options.forEach((option, index) => {
+                    if (index === question.correct) {
+                        option.classList.add('correct');
+                    } else if (index === window.selectedOption) {
+                        option.classList.add('incorrect');
+                    }
+                    option.style.pointerEvents = 'none';
+                });
+
+                if (window.selectedOption === question.correct) {
+                    score++;
+                }
+
+                document.getElementById('submitBtn').style.display = 'none';
+                document.getElementById('nextBtn').style.display = 'inline-block';
+            };
+
+            window.nextQuestion = function() {
+                currentQuestion++;
+                showQuestion();
+            };
+
+            function showQuizResults() {
+                const percentage = Math.round((score / quizQuestions.length) * 100);
+                let message = '';
+                let emoji = '';
+
+                if (percentage >= 80) {
+                    message = 'Excellent work! You have mastered this topic!';
+                    emoji = '🏆';
+                } else if (percentage >= 60) {
+                    message = 'Good job! Keep practicing to improve further.';
+                    emoji = '👍';
+                } else {
+                    message = 'Keep studying and try again. You can do it!';
+                    emoji = '💪';
+                }
+
+                const content = `
+                    <div class="quiz-container" style="text-align: center;">
+                        <h2>${emoji} Quiz Complete!</h2>
+                        <div style="font-size: 3rem; margin: 20px 0;">${percentage}%</div>
+                        <p style="font-size: 1.2rem; margin-bottom: 20px;">You scored ${score} out of ${quizQuestions.length} questions correctly.</p>
+                        <p style="font-size: 1.1rem; color: #7f8c8d; margin-bottom: 30px;">${message}</p>
+                        <button class="practice-button" onclick="startQuiz('${topicId}')">🔄 Try Again</button>
+                        <button class="practice-button" onclick="showTopic('${topicId}')" style="margin-left: 10px;">📚 Back to Lesson</button>
+                    </div>
+                `;
+                document.getElementById('contentArea').innerHTML = content;
+            }
+
+            showQuestion();
+        }
+
+        function generateQuizQuestions(topicId) {
+            const questionBank = {
+                'whole-numbers': [
+                    {
+                        question: "What is 1,247 + 3,856?",
+                        options: ["5,103", "5,093", "4,103", "5,203"],
+                        correct: 0
+                    },
+                    {
+                        question: "Which number comes after 9,999?",
+                        options: ["10,000", "10,001", "9,998", "10,100"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is the place value of 7 in 47,329?",
+                        options: ["Thousands", "Hundreds", "Tens", "Units"],
+                        correct: 0
+                    }
+                ],
+                'integers': [
+                    {
+                        question: "What is (-8) + 5?",
+                        options: ["-3", "3", "-13", "13"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is (-4) × (-6)?",
+                        options: ["24", "-24", "10", "-10"],
+                        correct: 0
+                    },
+                    {
+                        question: "Which is larger: -5 or -8?",
+                        options: ["-5", "-8", "They are equal", "Cannot determine"],
+                        correct: 0
+                    }
+                ],
+                'exponents': [
+                    {
+                        question: "What is 3⁴?",
+                        options: ["81", "12", "64", "27"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is 2³ × 2²?",
+                        options: ["2⁵ = 32", "2⁶ = 64", "2¹ = 2", "2⁰ = 1"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is 5⁰?",
+                        options: ["1", "0", "5", "25"],
+                        correct: 0
+                    }
+                ],
+                'patterns': [
+                    {
+                        question: "What is the next number in the sequence: 2, 5, 8, 11, ?",
+                        options: ["14", "13", "15", "12"],
+                        correct: 0
+                    },
+                    {
+                        question: "In the geometric sequence 3, 6, 12, 24, what is the next term?",
+                        options: ["48", "36", "30", "42"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is the 10th term in the sequence: 1, 4, 7, 10, ...?",
+                        options: ["28", "30", "31", "27"],
+                        correct: 0
+                    }
+                ],
+                'algebra': [
+                    {
+                        question: "Solve for x: 3x + 7 = 22",
+                        options: ["5", "6", "4", "7"],
+                        correct: 0
+                    },
+                    {
+                        question: "Simplify: 2(x + 3) + 4x",
+                        options: ["6x + 6", "6x + 3", "2x + 6", "6x + 7"],
+                        correct: 0
+                    },
+                    {
+                        question: "If y = 2x - 1 and x = 4, what is y?",
+                        options: ["7", "8", "6", "9"],
+                        correct: 0
+                    }
+                ],
+                'decimals': [
+                    {
+                        question: "What is 3.45 + 2.78?",
+                        options: ["6.23", "6.13", "5.23", "6.33"],
+                        correct: 0
+                    },
+                    {
+                        question: "Convert 3/4 to a decimal:",
+                        options: ["0.75", "0.34", "0.43", "0.25"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is 0.6 × 0.4?",
+                        options: ["0.24", "0.64", "2.4", "0.10"],
+                        correct: 0
+                    }
+                ],
+                'fractions': [
+                    {
+                        question: "What is 1/4 + 1/3?",
+                        options: ["7/12", "2/7", "1/6", "5/12"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is 2/3 × 3/4?",
+                        options: ["1/2", "5/7", "6/12", "2/4"],
+                        correct: 0
+                    },
+                    {
+                        question: "Simplify: 8/12",
+                        options: ["2/3", "4/6", "3/4", "1/2"],
+                        correct: 0
+                    }
+                ],
+                '2d-geometry': [
+                    {
+                        question: "How many sides does a pentagon have?",
+                        options: ["5", "6", "4", "7"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is the sum of angles in a triangle?",
+                        options: ["180°", "360°", "90°", "270°"],
+                        correct: 0
+                    },
+                    {
+                        question: "A quadrilateral has how many sides?",
+                        options: ["4", "3", "5", "6"],
+                        correct: 0
+                    }
+                ],
+                'straight-lines': [
+                    {
+                        question: "What do you call two lines that never meet?",
+                        options: ["Parallel", "Perpendicular", "Intersecting", "Vertical"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is the sum of angles on a straight line?",
+                        options: ["180°", "360°", "90°", "270°"],
+                        correct: 0
+                    },
+                    {
+                        question: "Vertically opposite angles are:",
+                        options: ["Equal", "Supplementary", "Complementary", "Different"],
+                        correct: 0
+                    }
+                ],
+                'pythagoras': [
+                    {
+                        question: "In a right triangle with legs 3 and 4, what is the hypotenuse?",
+                        options: ["5", "7", "25", "12"],
+                        correct: 0
+                    },
+                    {
+                        question: "If the hypotenuse is 13 and one leg is 5, what is the other leg?",
+                        options: ["12", "8", "18", "144"],
+                        correct: 0
+                    },
+                    {
+                        question: "Which set of numbers forms a Pythagorean triple?",
+                        options: ["5, 12, 13", "3, 4, 6", "6, 8, 9", "7, 11, 13"],
+                        correct: 0
+                    }
+                ],
+                'solve-triangles': [
+                    {
+                        question: "Find the missing side in a right triangle with legs 6 and 8:",
+                        options: ["10", "14", "12", "16"],
+                        correct: 0
+                    },
+                    {
+                        question: "If one leg is 9 and hypotenuse is 15, find the other leg:",
+                        options: ["12", "10", "6", "18"],
+                        correct: 0
+                    },
+                    {
+                        question: "A ladder 10m long leans against a wall. If the base is 6m from the wall, how high does it reach?",
+                        options: ["8m", "4m", "16m", "14m"],
+                        correct: 0
+                    }
+                ],
+                'perimeter-area': [
+                    {
+                        question: "What is the area of a rectangle with length 8 and width 5?",
+                        options: ["40", "26", "13", "80"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is the perimeter of a square with side length 7?",
+                        options: ["28", "14", "49", "21"],
+                        correct: 0
+                    },
+                    {
+                        question: "Find the area of a triangle with base 6 and height 4:",
+                        options: ["12", "24", "10", "6"],
+                        correct: 0
+                    }
+                ],
+                'circles': [
+                    {
+                        question: "If a circle has radius 7, what is its circumference? (Use π ≈ 3.14)",
+                        options: ["43.96", "21.98", "153.86", "49"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is the area of a circle with radius 4? (Use π ≈ 3.14)",
+                        options: ["50.24", "25.12", "12.56", "100.48"],
+                        correct: 0
+                    },
+                    {
+                        question: "The diameter of a circle is 10. What is its radius?",
+                        options: ["5", "20", "10", "15"],
+                        correct: 0
+                    }
+                ],
+                'rectangular-prisms': [
+                    {
+                        question: "Find the volume of a rectangular prism with length 4, width 3, height 2:",
+                        options: ["24", "18", "9", "36"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is the surface area of a cube with side length 3?",
+                        options: ["54", "27", "18", "36"],
+                        correct: 0
+                    },
+                    {
+                        question: "A box has dimensions 5×4×6. What is its volume?",
+                        options: ["120", "30", "60", "240"],
+                        correct: 0
+                    }
+                ],
+                'triangular-prisms': [
+                    {
+                        question: "A triangular prism has a triangular base with area 15 and height 8. What is its volume?",
+                        options: ["120", "60", "23", "240"],
+                        correct: 0
+                    },
+                    {
+                        question: "The base of a triangular prism is a right triangle with legs 3 and 4. If the prism height is 10, what is the volume?",
+                        options: ["60", "120", "30", "70"],
+                        correct: 0
+                    },
+                    {
+                        question: "How many faces does a triangular prism have?",
+                        options: ["5", "6", "4", "8"],
+                        correct: 0
+                    }
+                ],
+                'data-handling': [
+                    {
+                        question: "Find the mean of: 4, 6, 8, 10, 12",
+                        options: ["8", "6", "10", "9"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is the mode of: 2, 3, 3, 4, 5, 5, 5, 6?",
+                        options: ["5", "3", "4", "6"],
+                        correct: 0
+                    },
+                    {
+                        question: "Find the median of: 1, 3, 5, 7, 9",
+                        options: ["5", "3", "7", "25"],
+                        correct: 0
+                    }
+                ],
+                'functions': [
+                    {
+                        question: "If f(x) = 2x + 3, what is f(4)?",
+                        options: ["11", "8", "5", "14"],
+                        correct: 0
+                    },
+                    {
+                        question: "In the function y = 3x - 1, what is y when x = 2?",
+                        options: ["5", "6", "7", "4"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is the domain of y = x + 5?",
+                        options: ["All real numbers", "Positive numbers only", "Integers only", "x > 5"],
+                        correct: 0
+                    }
+                ],
+                'transformation': [
+                    {
+                        question: "What transformation moves a shape without changing its size or orientation?",
+                        options: ["Translation", "Rotation", "Reflection", "Enlargement"],
+                        correct: 0
+                    },
+                    {
+                        question: "A 90° clockwise rotation of point (2,3) around the origin gives:",
+                        options: ["(3,-2)", "(-3,2)", "(-2,-3)", "(2,-3)"],
+                        correct: 0
+                    },
+                    {
+                        question: "Reflection across the y-axis changes (4,2) to:",
+                        options: ["(-4,2)", "(4,-2)", "(-4,-2)", "(2,4)"],
+                        correct: 0
+                    }
+                ],
+                '3d-geometry': [
+                    {
+                        question: "How many vertices does a cube have?",
+                        options: ["8", "6", "12", "4"],
+                        correct: 0
+                    },
+                    {
+                        question: "How many edges does a triangular pyramid have?",
+                        options: ["6", "4", "5", "8"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is the shape of each face of a regular tetrahedron?",
+                        options: ["Triangle", "Square", "Pentagon", "Circle"],
+                        correct: 0
+                    }
+                ],
+                'probability': [
+                    {
+                        question: "What is the probability of getting heads when flipping a fair coin?",
+                        options: ["1/2", "1/4", "1/3", "2/3"],
+                        correct: 0
+                    },
+                    {
+                        question: "A bag contains 3 red balls and 7 blue balls. What is the probability of drawing a red ball?",
+                        options: ["3/10", "7/10", "3/7", "1/3"],
+                        correct: 0
+                    },
+                    {
+                        question: "Rolling a standard die, what is the probability of getting an even number?",
+                        options: ["1/2", "1/3", "2/3", "1/6"],
+                        correct: 0
+                    }
+                ],
+                'construction': [
+                    {
+                        question: "To construct a perpendicular bisector, you need:",
+                        options: ["Compass and straightedge", "Ruler and protractor", "Calculator", "Graph paper"],
+                        correct: 0
+                    },
+                    {
+                        question: "When constructing an angle bisector, the compass should:",
+                        options: ["Create equal arcs", "Measure the angle", "Draw the angle", "Erase lines"],
+                        correct: 0
+                    },
+                    {
+                        question: "A construction is considered exact when:",
+                        options: ["No measurements are used", "A ruler is used", "A protractor is used", "It's drawn freehand"],
+                        correct: 0
+                    }
+                ]
+            };
+
+            return questionBank[topicId] || [
+                {
+                    question: "This is a sample question for " + topicId,
+                    options: ["Option A", "Option B", "Option C", "Option D"],
+                    correct: 0
+                }
+            ];
+        }
+
+        function showProgress() {
+            currentView = 'progress';
+            updateNavigation();
+            const completionRate = Math.round((completedTopics.length / topics.length) * 100);
+            
+            let content = `
+                <h2 style="color: #2c3e50; margin-bottom: 20px; text-align: center;">📊 Your Progress</h2>
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="font-size: 3rem; color: #667eea; margin-bottom: 10px;">${completionRate}%</div>
+                    <p style="font-size: 1.2rem; color: #7f8c8d;">Overall Completion</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                    <div style="background: linear-gradient(135deg, #e8f5e8, #d4edda); padding: 20px; border-radius: 15px; text-align: center;">
+                        <h3 style="color: #155724; margin-bottom: 10px;">✅ Completed</h3>
+                        <div style="font-size: 2rem; color: #155724;">${completedTopics.length}</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #fff3cd, #ffeaa7); padding: 20px; border-radius: 15px; text-align: center;">
+                        <h3 style="color: #856404; margin-bottom: 10px;">📚 Remaining</h3>
+                        <div style="font-size: 2rem; color: #856404;">${topics.length - completedTopics.length}</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #cce5ff, #b3d9ff); padding: 20px; border-radius: 15px; text-align: center;">
+                        <h3 style="color: #004085; margin-bottom: 10px;">📖 Total Topics</h3>
+                        <div style="font-size: 2rem; color: #004085;">${topics.length}</div>
+                    </div>
+                </div>
+
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">📋 Topic Status</h3>
+                <div style="display: grid; gap: 10px;">
+            `;
+
+            topics.forEach(topic => {
+                const isCompleted = completedTopics.includes(topic.id);
+                const statusIcon = isCompleted ? '✅' : '⏳';
+                const statusText = isCompleted ? 'Completed' : 'In Progress';
+                const bgColor = isCompleted ? '#e8f5e8' : '#fff3cd';
+                const textColor = isCompleted ? '#155724' : '#856404';
+
+                content += `
+                    <div style="background: ${bgColor}; padding: 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: ${textColor}; font-weight: 600;">${topic.icon} ${topic.title}</span>
+                        <span style="color: ${textColor};">${statusIcon} ${statusText}</span>
+                    </div>
+                `;
+            });
+
+            content += `
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="practice-button" onclick="showTopics()">📚 Continue Learning</button>
+                </div>
+            `;
+
+            document.getElementById('contentArea').innerHTML = content;
+        }
+
+        function updateNavigation() {
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (currentView === 'overview') {
+                buttons[0].classList.add('active');
+            } else if (currentView === 'topics') {
+                buttons[1].classList.add('active');
+            } else if (currentView === 'progress') {
+                buttons[2].classList.add('active');
+            }
+        }
+
+        // Initialize the app
+        updateProgress();
+        showOverview();
+    </script>
+</body>
+</html>
